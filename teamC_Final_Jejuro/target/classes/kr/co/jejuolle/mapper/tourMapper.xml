@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tourspot">
+
+	<select id="tourspotlist" resultType="trspotvo">
+		select tNo , tName , tTel ,
+		tAddr1 , tTopImg, tType from tourSpot
+	</select>
+	<!-- 관광지 상세보기 -->
+	<select resultType="trspotvo" id="tourspotDetail"
+		parameterType="int">
+		select tNo , tName ,tInfo,tTel,tAddr1,tImg1,tImg2,tImg3,tImg4,
+		decode(tType,'a','자연','b','문화','c','테마','d','올레')tType ,tTopImg,tHit,
+		(select count(*) cnt from tourlike where tNo=#{tNo}) tlikes,
+		(select count(*) cnt from tourpick where tNo=#{tNo}) tpicks,
+		(select TRUNC(avg(nvl(trpoint,0)),1) trpoint from tourreview where tno=#{tNo}) tPoint 
+		from tourspot where tNo=#{tNo}
+	</select>
+
+	<!-- 관광지 좋아요 -->
+	<insert id="tourspotLike" parameterType="trlikevo">
+	insert into tourlike values(tourlike_seq.nextVal,#{tNo},#{uNo},sysdate)
+	</insert>
+
+	<!-- 관광지 좋아요 여부 -->
+	<select resultType="int" id="likecheck" parameterType="trlikevo">
+	select count(*) cnt from tourlike where uNo=#{uNo} and tNo=#{tNo}
+	</select>
+
+	<!-- 관광지 찜하기 -->
+	<insert id="tourspotpick" parameterType="trpickvo">
+	insert into tourpick values(tourpick_seq.nextVal,#{tNo},#{uNo},sysdate)
+	</insert>
+
+	<!-- 관광지 찜하기 여부 -->
+	<select resultType="int" id="pickcheck" parameterType="trpickvo">
+	select count(*) cnt from tourpick where uNo=#{uNo} and tNo=#{tNo}
+	</select>
+
+	<!-- 관광지 조회수 증가 -->
+	<update id="tourHit" parameterType="int">
+	update tourspot set tHit=tHit+1 where tNo=#{tNo}
+	</update>
+	
+	<!-- 조회수가 높은 관광지 7개 출력 -->
+	<select id="tourHitList" resultType="trspotvo">
+		select tname,decode(tType,'a','자연','b','문화','c','테마','d','올레')tType,ttopimg,thit from tourspot ORDER by thit desc
+	</select>
+	
+	<!-- 관광지 리뷰 등록  -->
+	<insert id="trreviewInsert" parameterType="trreviewvo">
+		insert into tourreview values(tourreview_seq.nextVal,#{tNo},#{uNo},#{trUser},#{trTitle},#{trContent},#{trPoint},sysdate)
+	</insert>
+	
+	<!-- 관광지 총 리뷰 -->
+	<select id="trTotal" resultType="int" parameterType="int">
+		select count(*) from tourreview where tNo=#{tNo}
+	</select>
+	
+	<!-- 관광지 리뷰리스트 -->
+	<select id="treviewList" parameterType="scnt" resultType="trreviewvo">
+		select * from (select rownum r_num, a.* from(
+		select trno,tNo,uNo,trTitle,trContent,trPoint,trdate,trUser from tourreview where tNo=#{No} order by trno desc )a
+		)where r_num BETWEEN #{begin} and #{end}
+	</select>
+	
+	<!-- 관광지 리뷰 신고 -->
+	<insert id="trReport" parameterType="trreportvo">
+		insert into trreport values(trreport_seq.nextVal,#{trNo},#{uNo},sysdate)
+	</insert>
+	
+	<!-- 관광지 리뷰 신고 여부  -->
+	<select id="trReportCheck" parameterType="trreportvo" resultType="int">
+		select count(*) cnt from trreport where trno=#{trNo} and uno=#{uNo}
+	</select>
+	
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+	<!-- 일반 회원 회원 가입 -->
+	<insert id="register_users" parameterType="usersvo">
+		insert into Users values(users_seq.nextVal, #{uuId}, #{uPwd},#{uName}, #{uBirth}, #{uEmail},#{uGender},#{uPhone}, #{uImg}, sysdate)
+	</insert>
+	<!-- 아이디 중복 검사  -->
+	<select id="check_id" parameterType="String" resultType="int">
+		select count(*) from Users where uuId = #{uuId}
+	</select>
+	<!-- 로그인 -->
+	<select id="login" parameterType="usersvo" resultType="usersvo">
+		select count(*) cnt, uName, uNo,uEmail from Users where uuId=#{uuId} and uPwd=#{uPwd} group by uName, uNo,uEmail
+	</select>	
+	<!-- 로그인 로그 -->
+	<insert id="login_log">
+		insert into LoginLog values(LoginLog_seq.nextVal, #{uNo}, #{lStatus}, sysdate)
+	</insert>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="search">
+	<select id="count" parameterType="String" resultType="int">
+		select
+		(select count(*) cnt from house where hname like '%'||#{search}||'%')
+		+
+		(select count(*) cnt from question where utitle like
+		'%'||#{search}||'%')+
+		(select count(*) cnt from tourspot where tname
+		like '%'||#{search}||'%') cnt from dual
+	</select>
+	<select id="list" parameterType="scnt" resultType="slist">
+		select * from (
+		select rownum r_num, a.*from
+		(
+		select*from(
+        select hno,hname ,decode(htype,'a','호텔','b','모텔','c','캠핑','d','리조트') htype,htopimg,'하우스' as atype from house where hname like '%'||#{search}||'%'
+        union all select tno,tname,decode(ttype,'a','자연','b','문화','c','테마','d','올레') ttype,ttopimg,'관광지' as atype from tourspot where tname like '%'||#{search}||'%') 
+        order by 1 desc
+		) a
+		) where r_num between #{begin} and #{end}
+	</select>
+	<update id="searchupdate" parameterType="String">
+		merge into searchlog
+		using dual
+		on(sword = #{search})
+		when matched then
+		update set
+		scount = scount + 1
+		when not matched then
+		insert(sno,sword,scount)values(searchlog_seq.nextVal,#{search},1)
+	</update>
+	<select id = "searchrank" resultType="searchdto">
+	SELECT sword FROM searchlog order by scount desc
+	</select>
+</mapper>

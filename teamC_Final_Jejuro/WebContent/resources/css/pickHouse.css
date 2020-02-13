@@ -1,0 +1,196 @@
+#contents .contents-wrap {
+	position: relative
+}
+
+.spot .contents-wrap {
+	width: 390px;
+	float: left
+}
+
+.city-recommend-contents-wrap {
+	position: relative
+}
+
+<!--spots-contents -->
+.spots-contents {
+	position: relative;
+	width: 390px;
+	height: 151px;
+	padding: 0;
+	margin: 10px 0 20px;
+	background: #fff;
+	border: 1px solid #eee
+}
+
+.spots-contents .spot-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 150px;
+	height: 149px;
+	overflow: hidden
+}
+
+.spots-contents .spot-img img {
+	width: 100%;
+	height: 100%
+}
+
+.spots-contents .spot-img a {
+	position: relative;
+	z-index: 100
+}
+
+.spots-contents .spot-info-box {
+	overflow-y: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 15px 15px 15px 165px
+}
+
+.spots-contents .spot-type00 .spot-name {
+	background: url(../../images/spot-type01-01.png) 0 0/24px 24px no-repeat
+}
+
+.spots-contents .spot-type01 .spot-name {
+	background: url(../../images/spot-type01-02.png) 0 0/25px 25px no-repeat
+}
+
+.spots-contents .spot-type02 .spot-name {
+	background: url(../../images/spot-type01-03.png) 0 0/25px 25px no-repeat
+}
+
+.spots-contents .spot-type-myspot .spot-name {
+	background: url(../../images/spot-type01-etc.png) 0 0/25px 25px
+		no-repeat
+}
+
+.spots-contents .spot-type-mytrans .spot-name, .spots-contents .spot-type-trans .spot-name
+	{
+	background: url(../../images/spot-type01-trans.png) 0 0/25px 25px
+		no-repeat
+}
+
+.spots-contents .spot-name {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	height: 30px;
+	line-height: 25px;
+	padding: 0 0 0 30px;
+	color: #333;
+	font-size: 16px;
+	font-weight: 500
+}
+
+.spots-contents .spot-name a {
+	color: #333;
+	overflow: hidden;
+	width: 100%;
+	display: block;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.present .spots-contents .spot-name a {
+	width: 66%
+}
+
+.spots-contents .spot-state {
+	display: block;
+	width: 100%;
+	margin: 0 0 5px;
+	color: #666;
+	font-size: 16px;
+	font-weight: 300;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.spots-contents .desc {
+	overflow: hidden;
+	height: 25px;
+	line-height: 17px;
+	margin: 0
+}
+
+.spots-contents .desc .btn-post, .spots-contents .desc .popular,
+	.spots-contents .desc .town {
+	display: block;
+	width: auto;
+	max-width: 58%;
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	padding-right: 15px;
+	font-size: 14px;
+	font-weight: 300;
+	color: #bbb;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.spots-contents .desc .town {
+	max-width: 42%
+}
+
+.spots-contents .desc span:first-child {
+	position: relative
+}
+
+.spots-contents .desc .btn-post {
+	padding: 0 15px 0 20px;
+	background: url(../../images/icon-m-post.png) 0 4px no-repeat
+}
+
+.spots-contents .desc .btn-post::before, .spots-contents .desc span:first-child::before
+	{
+	display: block;
+	content: "";
+	width: 2px;
+	height: 2px;
+	background: #bbb;
+	position: absolute;
+	top: 10px;
+	right: 6px
+}
+
+.spots-contents .desc .btn-post span::before {
+	display: none
+}
+
+.spots-contents .spot-info-box .count-box {
+	position: absolute;
+	bottom: 15px;
+	left: 165px;
+	overflow: hidden;
+	z-index: 10
+}
+
+.spots-contents .spot-info-box .count-box .btn-post {
+	display: block;
+	width: auto;
+	position: static;
+	float: left;
+	padding: 0 15px 0 20px;
+	color: #999;
+	font-size: 14px;
+	font-weight: 300
+}
+
+.spots-contents .spot-info-box .count-box .btn-post span {
+	color: #999;
+	font-weight: 300
+}
+
+.spots-contents .spot-info-box .count-box .btn-fav {
+	background: url(../../images/icon-m-favo.png) 0 4px no-repeat
+}
+
+.spots-contents .spot-info-box .count-box .btn-post {
+	background: url(../../images/icon-m-post.png) 0 4px no-repeat
+}
+<!-- end of spots-contents-->

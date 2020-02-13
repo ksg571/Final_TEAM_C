@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myplan">
+	<!-- 여행일정 추가 -->
+	<insert id="add_myplan" parameterType="myplanvo">
+		insert into myPlan values(Myplan_seq.nextVal, #{uNo}, #{mTitle}, #{startDate},#{endDate}, #{mPeople},#{mWith},#{mTheme},#{mStatus})
+	</insert>
+	
+	<select id="see_myplan" parameterType="int" resultType="myplanvo">
+		select mTitle,to_char(startDate,'yy/mm/dd') startDate, to_char(endDate,'yy/mm/dd') endDate, mPeople, mNo
+		,decode(mWith,'a','부모','b','아이','c','친구','d','커플','e','혼자') mWith
+		,decode(mTheme,'a','휴식과 치유 여행','b','레저와 체험','c','천천히 걷기','d','제주의 문화유산','e','전시와 행사','f','쇼핑') mTheme
+		,decode(mStatus,'a','공개','b','비공개') mStatus 
+		from( select mNo, mTitle,startDate, endDate, mPeople, mTheme, mStatus, mWith
+       			 from myPlan 
+       			 where uNo =  2
+       			 order by mNo desc) 
+		where rownum=1
+	</select>
+	
+	<resultMap type="hvo" id="houseHousePick">
+		<id property="hNo" column="hNo" javaType="int"/>
+		<result property="hName" column="hName"/>
+		<result property="hAddr1" column="hAddr1"/>
+		<result property="hTopImg" column="hTopImg"/>
+		<result property="hType" column="hType"/>
+		
+		<collection property="housePick" javaType="java.util.List" ofType="hpickvo">
+				<id property="hpNo" column="hpNo" javaType="String"/>
+		</collection>
+	</resultMap>
+	
+	<select id="house_pick" resultMap="houseHousePick" parameterType="int" >
+		select h.hName, h.hAddr1, h.hTopImg, decode(h.hType,'a','호텔','b','모텔','c','캠핑','d','리조트') hType from house h, housePick hp   
+		where h.hNo = hp.hNo 
+		and hp.uNo = #{uNo}
+	</select>
+	
+	<resultMap type="trspotvo" id="tourTourPick">
+		<id property="tNo" column="tNo" javaType="int"/>
+		<result property="tName" column="tName"/>
+		<result property="tAddr1" column="tAddr1"/>
+		<result property="tTopImg" column="tTopImg"/>
+		<result property="tType" column="tType"/>
+		
+		<collection property="tourPick" javaType="java.util.List" ofType="trpickvo">
+			<id property="tpNo" column="tpNo" javaType="int"/>
+		</collection>
+	</resultMap>
+	
+	<select id="tour_pick" resultMap="tourTourPick" parameterType="int">
+		select t.tName, t.tAddr1, t.tTopImg, decode(t.tType,'a','자연','b','문화','c','테마','d','올레') tType 
+		from tourSpot t, tourPick tp 
+		where t.tNo = tp.tNo 
+		and tp.uNo = #{uNo}
+	</select>
+	
+	<resultMap type="hvo" id="reservationHouse">
+		<id property="hNo" column="hNo" javaType="int"/>
+		<result property="hName" column="hName"/>
+		<result property="hAddr1" column="hAddr1"/>
+		<result property="rName" column="rName"/>
+		<result property="rPeople" column="rPeople"/>
+		
+		<collection property="roomVO" javaType="java.util.List" ofType="roomvo">
+			<id property="rNo" column="rNo" javaType="int"/>
+			
+			<collection property="reservationVO" javaType="java.util.List" ofType="reservationvo">
+				<id property="rvNo" column="rvNo" javaType="int"/>
+				
+			</collection>
+		</collection>
+	</resultMap>
+	
+	<select id="house_res" resultMap="reservationHouse" parameterType="int">
+		select hName, rName, hAddr1, rPeople from reservation rs, room r, house h 
+		where rs.rNo = r.rNo 
+		and r.hNo= h.hNo 
+		and rs.uNo = #{uNo}
+	</select>
+	
+	<insert id="add_money" parameterType="pmvo">
+		insert into planMoney values(planMoney_seq.nextval,#{mNo}, #{airplane}, #{transportaion}, #{reser}, #{food}, #{tiket}, #{etc})
+	</insert>
+	
+</mapper>

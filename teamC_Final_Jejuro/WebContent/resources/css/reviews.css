@@ -1,0 +1,168 @@
+.review_top{
+	padding-top:30px;
+	text-align:right;
+	font-size:24px;
+	color:#363636;
+	font-family:'nanum_b';
+	text-align:left;
+	line-height:30px;
+}
+
+.review_top span{
+	display:block;
+	float:left;
+}
+
+.review_btn{
+	width:166px;
+	height:42px;
+	background:#ff9320;
+	border:1px solid #f7870f;
+	line-height:42px;
+	font-size:15px;
+	text-align:center;
+	color:white;
+	float:right;
+	cursor:pointer;
+}
+
+.review_inner{
+	width:100%;
+	padding-top:20px;
+	padding-left:1px;
+}
+
+.review_tleft{
+	float:left;
+	font-size:14px;
+	color:#555555;
+	font-weight:bold;
+	line-height:42px;
+}
+
+.review_sort_box{
+	width:200px;
+	height:31px;
+	border:1px solid #c8c8ca;
+	background:white;
+	float:left;
+	overflow:hidden;
+	margin-left:5px;
+	background:url('/res/img/component/input/select_arrow.gif') no-repeat white;
+	background-position:right center;
+	margin-top:5px;
+}
+
+.review_sort{
+	width:220px;
+	height:31px;
+	border:none;
+	padding-left:10px;
+	background:transparent;
+	outline:none;
+}
+
+.box{
+	width:348px;
+	height:336px;
+	border:1px solid #e6e6e6;
+	background:white;
+	float:left;
+	display:block;
+	margin-right:24px;
+	margin-bottom:24px;
+}
+
+.box.last{
+	margin-right:0px;
+}
+
+.box:hover{
+	border:1px solid #1a7ad9;
+}
+
+.box:hover .cover_img{
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.img_box{
+	width:100%;
+	height:270px;
+	position:relative;
+	overflow:hidden;
+}
+
+.box.my .img_box{
+	height:220px;
+}
+
+.img_bg{
+	width:100%;
+	height:100px;
+	background:linear-gradient( to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	line-height:160px;
+	color:white;
+	padding-left:15px;
+	padding-bottom:15px;
+	font-size:16px;
+	z-index:1;
+}
+
+.img_box img{
+	width:100%;
+	height:100%;
+	transition: all 3.6s;
+	-webkit-transition: all 3.6s;
+}
+
+.box_bottom{
+	width:100%;
+	position:relative;
+	text-align:center;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+.box_cnt1, .box_cnt2{
+	display:inline-block;
+	float:left;
+	color:#49b2e9;
+	font-size:16px;
+	font-weight:bold;
+	line-height:65px;
+}
+
+.box_line{
+	float:left;
+	width:1px;
+	height:14px;
+	background:#adadad;
+	margin-top:25px;
+	margin-left:35px;
+	margin-right:35px;
+}
+
+.bottom_inner{
+	display:inline-block;
+	margin:0 auto;
+}
+
+.btn_review{
+	border:1px solid #c8c8ca;
+	height:40px;
+	line-height:40px;
+	color:#808080;
+	font-size:15px;
+	font-weight:bold;
+	margin-top:-10px;
+}
+
+.btn_review b{
+	font-family:'nanum_b';
+	color:#555555;
+	font-weight:bold;
+}

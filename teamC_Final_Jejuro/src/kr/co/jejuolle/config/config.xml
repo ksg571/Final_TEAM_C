@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <!-- kr.co.ikosmo.config/config.xml -->  
+<configuration>
+	<typeAliases>
+		<!-- 회원 -->
+		<typeAlias type="kr.co.jejuolle.mvc.vo.UsersVO" alias="usersvo" />
+		<!-- 관광지  -->
+		<typeAlias type="kr.co.jejuolle.mvc.vo.TourDetailVO" alias="trdetailvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.TourLikeVO" alias="trlikevo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.TourPickVO" alias="trpickvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.TourReviewVO" alias="trreviewvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.TourSpotVO" alias="trspotvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.TrReportVO" alias="trreportvo" />
+		<!-- 방 -->		
+		<typeAlias type="kr.co.jejuolle.mvc.vo.HouseVO" alias="hvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.HouseDetailVO" alias="hdetailvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.HouseLikeVO" alias="hlikevo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.HousePickVO" alias="hpickvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.HouseReviewVO" alias="hreviewvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.RoomVO" alias="roomvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.HrReportVO" alias="hrreportvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.ReservationVO" alias="reservationvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.PaymentVO" alias="paymentvo" />
+		<!-- 로그  -->
+		<typeAlias type="kr.co.jejuolle.mvc.vo.SearchLogVO" alias="searchlogvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.LoginLogVO" alias="loginlogvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.RvTourlistlogVO" alias="rvtvo"/>
+		<typeAlias type="kr.co.jejuolle.mvc.vo.TourCountVO" alias="rvtcountvo"/>
+		<typeAlias type="kr.co.jejuolle.mvc.vo.LatestTourspot" alias="ltsvo"/>
+		<!-- 여행플랜 -->
+		<typeAlias type="kr.co.jejuolle.mvc.vo.MyplanVO" alias="myplanvo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.PlanMoneyVO" alias="pmvo" />
+		<!--기타-->
+		<typeAlias type="kr.co.jejuolle.mvc.vo.AnswerVO" alias="answervo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.NoticeVO" alias="noticevo" />
+		<typeAlias type="kr.co.jejuolle.mvc.vo.QuestionVO" alias="questionvo" />
+		<!-- 검색 -->
+		<typeAlias type="kr.co.jejuolle.mvc.vo.SearchVO" alias="scnt"/>
+		<typeAlias type="kr.co.jejuolle.mvc.vo.SearchListVO" alias="slist"/>
+		<typeAlias type="kr.co.jejuolle.mvc.vo.SearchLoggerDTO" alias="searchdto"/>
+		<!-- 방문자 횟수 -->
+		<typeAlias type="kr.co.jejuolle.mvc.vo.VisitCountVO" alias="vVO"/>
+		
+	</typeAliases>
+</configuration> 

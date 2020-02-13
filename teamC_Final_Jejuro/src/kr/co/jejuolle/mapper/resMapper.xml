@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="res">
+
+	<resultMap type="hvo" id="hroomRes">
+		<id property="hNo" column="hNo" javaType="int"/>
+		<result property="hName" column="hName"/>
+		<result property="rName" column="rName"/>
+		<result property="rPrice" column="rPrice"/>
+		<result property="rImg" column="rImg"/>
+		<result property="startDate" column="startDate"/>
+		<result property="endDate" column="endDate"/>
+		<result property="rvPeople" column="rvPeople"/>
+		<result property="rvNo" column="rvNo"/>
+		
+		<collection property="roomVO" javaType="java.util.List" ofType="roomvo">
+		<id property="rNo" column="rNo" javaType="int"/>
+		<result property="rName" column="rName"/>
+		<result property="rPrice" column="rPrice"/>
+		<result property="rImg" column="rImg"/>
+		<result property="rvPeople" column="rvPeople"/>
+			
+			<collection property="reservationVO" javaType="java.util.List" ofType="reservationvo">
+				<id property="rvNo" column="rvNo" javaType="int"/>
+				<result property="startDate" column="startDate"/>
+				<result property="endDate" column="endDate"/>
+				
+			</collection>
+		</collection>
+	</resultMap>
+	
+	<select id="list_res" resultMap="hroomRes" parameterType="int">
+		select hName, rName, rPrice, rvPeople,rvNo, rImg, to_char(startDate,'yy/mm/dd') startDate, to_char(endDate,'yy/mm/dd') endDate 
+		from reservation rv, room r , house h
+		where rv.rNo= r.rNo 
+        and r.hNo = h.hNo
+		and rvNo =#{rvNo}
+	</select>
+	
+	<delete id="del_res" parameterType="int">
+		delete from reservation where rvNo = #{rvNo}
+	</delete>
+	
+	<insert id="add_pay" parameterType="paymentvo">
+		insert into payment values(payment_seq.nextVal, #{rvNo}, #{uNo}, #{pType}, #{pPrice},  sysdate)
+	</insert>
+	
+</mapper>
