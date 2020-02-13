@@ -176,7 +176,7 @@ public class Tour_Controller {
 						addcookieValue = cookieval[0] + "#" + cookieval[1] + "#" + cookieval[2] + "#" + cookieval[3]
 								+ "#";
 						lateCookie = new Cookie("key", addcookieValue);
-						lateCookie.setMaxAge(60 * 60 * 24 * 7);
+						lateCookie.setMaxAge(10 * 1 * 1 * 1);
 						response.addCookie(lateCookie);
 					} else {
 						lateCookie = new Cookie("key", cookieValue);
